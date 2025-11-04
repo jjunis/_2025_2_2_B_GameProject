@@ -14,14 +14,22 @@ public class MazeGenerator : MonoBehaviour
     public float cellSize = 2f;
 
     [Header("시각화 설정")]
-    public bool visualizeGeneration = false;
-    public float viaulizationSpeed = 0.05f;
-    public Color visitedColor = Color.cyan;
-    public Color currentColor = Color.yellow;
-    public Color backtrackColor = Color.magenta;
+    public bool visualizeGeneration = false;            //생성 과정 보기    
+    public float viaulizationSpeed = 0.05f;             //속도
+    public Color visitedColor = Color.cyan;             //방문한 칸 색상
+    public Color currentColor = Color.yellow;           //현재 칸 색상
+    public Color backtrackColor = Color.magenta;        //뒤로 가기 색상
 
     private MazeCell[,] maze;
-    private Stack<MazeCell> cellstack;
+    private Stack<MazeCell> cellstack;                  //DFS를 위한 스택
+
+    public void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
